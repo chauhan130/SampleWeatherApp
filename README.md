@@ -5,7 +5,7 @@ The user's location is displayed on the map. You can go to any location by track
 
 Tapping on the user's current location will get weather information of the current location.
 
-The *WeatherAPI* framework gets the weather information from [OpenWeatherMap](https://openweathermap.org). You pass the CLLocation instance and it will get the weather information in `LocationWeatherInfo` instance. The `LocationWeatherInfo` makes sure the units are preserved appropriately according to the server sends. The unit is displayed automatically by iOS.
+The *WeatherAPI* framework gets the weather information from [OpenWeatherMap](https://openweathermap.org). You pass the CLLocation instance and it will get the weather information in `LocationWeatherInfo` instance. The `LocationWeatherInfo` makes sure the units are preserved appropriately according to the server sends.
 
 Todo:
 - [ ] Implement MVP/MVVM pattern.
