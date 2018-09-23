@@ -18,7 +18,10 @@ class WeatherDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         didSet {
             rows.removeAll()
             if let location = locationInfo {
-                if let name = location.locationName {
+                if var name = location.locationName {
+                    if name.count == 0 {
+                        name = "--"
+                    }
                     let data = ["key": "Location", "value" : "\(name)"]
                     rows.append(data)
                 }

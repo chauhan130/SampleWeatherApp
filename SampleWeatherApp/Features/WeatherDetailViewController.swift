@@ -43,10 +43,9 @@ class WeatherDetailViewController: UIViewController {
     }
     
     private func fetchWeatherData() {
-        guard let location = location, weatherApi.requestInProgress == false else {
+        guard let location = location else {
             return
         }
-
         weatherApi.getWeather(location: location) { (result) in
             switch result {
             case .success(let location):
@@ -56,7 +55,14 @@ class WeatherDetailViewController: UIViewController {
                 self.datasource.locationInfo = location
                 self.tableView.reloadData()
             case .failure(let err):
-                print("Error: \(err)")
+                var description = err.localizedDescription
+                if let weatherError = err as? WeatherAPI.WeatherError {
+                    description = weatherError.description
+                }
+
+                let alert = UIAlertController(title: "Error", message: description, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
             self.loader.stopAnimating()
         }

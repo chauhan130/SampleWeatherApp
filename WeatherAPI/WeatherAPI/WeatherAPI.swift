@@ -22,9 +22,25 @@ public class WeatherAPI {
         case failure(Swift.Error)
     }
 
-    public enum WeatherError: Swift.Error {
+    public enum WeatherError: Swift.Error, CustomStringConvertible {
         case placemarkNotFound
         case invalidJsonReceived
+        case serverError(String)
+
+        public var description: String {
+            switch self {
+            case .invalidJsonReceived:
+                return "Invalid json received from server."
+            case .placemarkNotFound:
+                return "Place not found."
+            case .serverError(let message):
+                return message
+            }
+        }
+
+        public var localizedDescription: String {
+            return description
+        }
     }
 
     public enum WeatherResult {
@@ -69,6 +85,10 @@ public class WeatherAPI {
             switch response.result {
             case .success(let json):
                 if let json = json as? [String: Any] {
+                    if let message = json["message"] as? String {
+                        completion(.failure(WeatherError.serverError(message)))
+                        return
+                    }
                     let locationInfo = LocationWeatherInfo(json: json)
                     completion(.success(locationInfo))
                     self.requestInProgress = false
