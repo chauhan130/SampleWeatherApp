@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A7O-W9-SIW">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Zjd-7A-Jns">
+            <objects>
+                <navigationController id="A7O-W9-SIW" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nSP-0J-4ab">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ZaJ-TC-dX8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kgx-xW-ti8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1364" y="-83"/>
+        </scene>
+        <!--Sample Weather App-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="SampleWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bbf-MA-FGI">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Bbf-MA-FGI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1gV-zv-3fg"/>
+                            <constraint firstItem="Bbf-MA-FGI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8s2-Ba-I9B"/>
+                            <constraint firstAttribute="trailing" secondItem="Bbf-MA-FGI" secondAttribute="trailing" id="KUD-Ia-OCn"/>
+                            <constraint firstAttribute="bottom" secondItem="Bbf-MA-FGI" secondAttribute="bottom" id="clj-NX-RI5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Sample Weather App" id="WmJ-im-8dG"/>
+                    <connections>
+                        <outlet property="mapView" destination="Bbf-MA-FGI" id="ySC-Bs-x8Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-471" y="-83"/>
+        </scene>
+        <!--Weather Detail View Controller-->
+        <scene sceneID="QBQ-1W-tSF">
+            <objects>
+                <viewController storyboardIdentifier="WeatherDetailViewController" id="ZCz-J7-0lZ" customClass="WeatherDetailViewController" customModule="SampleWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oXA-N1-F3L">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jOy-nd-WRR">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jOy-nd-WRR" firstAttribute="bottom" secondItem="DHM-JD-EcS" secondAttribute="bottom" id="6gm-ae-zzb"/>
+                            <constraint firstItem="jOy-nd-WRR" firstAttribute="top" secondItem="DHM-JD-EcS" secondAttribute="top" id="ZE1-x5-BXB"/>
+                            <constraint firstItem="jOy-nd-WRR" firstAttribute="trailing" secondItem="DHM-JD-EcS" secondAttribute="trailing" id="kHr-9M-6hd"/>
+                            <constraint firstItem="jOy-nd-WRR" firstAttribute="leading" secondItem="DHM-JD-EcS" secondAttribute="leading" id="xZX-oi-lWm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DHM-JD-EcS"/>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="jOy-nd-WRR" id="U8e-pB-g9s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gbV-pA-D3M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="413.60000000000002" y="-83.208395802098963"/>
+        </scene>
+    </scenes>
+</document>
