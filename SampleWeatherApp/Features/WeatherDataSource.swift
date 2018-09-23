@@ -34,30 +34,36 @@ class WeatherDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
                 }
                 if let wind = location.wind {
                     if let speed = wind.speed {
-                        let data = ["key": "Wind Speed", "value" : "\(speed)"]
+                        let speedValue = MeasurementFormatter().string(from: speed)
+                        let data = ["key": "Wind Speed", "value" : "\(speedValue)"]
                         rows.append(data)
                     }
                     if let degree = wind.degree {
-                        let data = ["key": "Wind Degree", "value" : "\(degree)"]
+                        let degreeValue = MeasurementFormatter().string(from: degree)
+                        let data = ["key": "Wind Degree", "value" : "\(degreeValue)"]
                         rows.append(data)
                     }
                 }
                 if let temperature = location.temperature {
                     if let main = temperature.main {
-                        let data = ["key": "Temperature (Main)", "value" : "\(main)"]
+                        let tempValue = MeasurementFormatter().string(from: main)
+                        let data = ["key": "Temperature (Main)", "value" : "\(tempValue)"]
                         rows.append(data)
                     }
                     if let min = temperature.temperatureMin {
-                        let data = ["key": "Temperature (Min)", "value" : "\(min)"]
+                        let minTempValue = MeasurementFormatter().string(from: min)
+                        let data = ["key": "Temperature (Min)", "value" : "\(minTempValue)"]
                         rows.append(data)
                     }
                     if let max = temperature.temperatureMax {
-                        let data = ["key": "Temperature (Max)", "value" : "\(max)"]
+                        let maxTempValue = MeasurementFormatter().string(from: max)
+                        let data = ["key": "Temperature (Max)", "value" : "\(maxTempValue)"]
                         rows.append(data)
                     }
                 }
                 if let pressure = location.pressure {
-                    let data = ["key": "Pressure", "value" : "\(pressure)"]
+                    let pressureValue = MeasurementFormatter().string(from: pressure)
+                    let data = ["key": "Pressure", "value" : "\(pressureValue)"]
                     rows.append(data)
                 }
                 if let humidityPercent = location.humidityPercent {
