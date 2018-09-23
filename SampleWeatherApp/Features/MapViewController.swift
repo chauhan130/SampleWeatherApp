@@ -13,10 +13,10 @@ import WeatherAPI
 
 class MapViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
-    var pinAnnotation: MKPointAnnotation?
 
     private let locationManager = CLLocationManager()
     private var locationItem: UIBarButtonItem?
+    private var requestSent = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,11 @@ class MapViewController: UIViewController {
         // Keeping double-tap will conflict with the map's default gesture; keeping the long press gesture instead.
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressDetected(gestureRecognizer:)))
         mapView.addGestureRecognizer(longPressGesture)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        requestSent = false
     }
 
     /// Requests the location permission and if we have it already, then requests the current location.
@@ -64,26 +69,19 @@ class MapViewController: UIViewController {
         guard gestureRecognizer.state == .began else {
             return
         }
-        if let oldAnnotation = pinAnnotation {
-            mapView.removeAnnotation(oldAnnotation)
-        }
 
         let point = gestureRecognizer.location(in: view)
         let coordinate = mapView.convert(point, toCoordinateFrom: view)
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
 
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-        annotation.title = "Custom Location"
-        mapView.addAnnotation(annotation)
-        pinAnnotation = annotation
-
-        mapView.addAnnotation(annotation)
-
         fetchWeatherData(location: location)
     }
 
     private func fetchWeatherData(location: CLLocation) {
+        guard requestSent == false else {
+            return
+        }
+        requestSent = true
         if let weatherDetailView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WeatherDetailViewController") as? WeatherDetailViewController {
             weatherDetailView.location = location
             self.navigationController?.pushViewController(weatherDetailView, animated: true)
@@ -110,7 +108,6 @@ extension MapViewController: CLLocationManagerDelegate {
         print("Received Locations..")
         if let location = locations.first {
             mapView.setCenter(location.coordinate, animated: true)
-            fetchWeatherData(location: location)
         }
     }
 

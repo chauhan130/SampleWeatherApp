@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import MapKit
 import CoreLocation
 import WeatherAPI
 
 class WeatherDetailViewController: UIViewController {
+
+    private enum Constants {
+        static let cameraAltitude = CLLocationDistance(400)
+        static let cameraPitch = CGFloat(0)
+        static let cameraHeading = CLLocationDirection(0)
+    }
+
     var location: CLLocation?
     @IBOutlet var textView: UITextView!
+    @IBOutlet var mapView: MKMapView!
 
     private let weatherApi = WeatherAPI()
     private let loader = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
@@ -30,10 +39,21 @@ class WeatherDetailViewController: UIViewController {
         guard let location = location, weatherApi.requestInProgress == false else {
             return
         }
+        let camera = MKMapCamera(lookingAtCenter: location.coordinate, fromDistance: Constants.cameraAltitude, pitch: Constants.cameraPitch,
+                                 heading: Constants.cameraHeading)
+        mapView.setCamera(camera, animated: false)
+
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location.coordinate
+        mapView.addAnnotation(annotation)
+
         weatherApi.getWeather(location: location) { (result) in
             switch result {
             case .success(let location):
                 self.textView.text = "\(location)"
+                if let name = location.locationName {
+                    self.title = name
+                }
             case .failure(let err):
                 print("Error: \(err)")
                 self.textView.text = "\(err)"

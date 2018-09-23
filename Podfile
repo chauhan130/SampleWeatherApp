@@ -29,10 +29,4 @@ target 'WeatherAPI' do
   # Pods for WeatherAPI
   pod 'Alamofire', '~> 4.7'
 
-  target 'WeatherAPITests' do
-    inherit! :search_paths
-    # Pods for testing
-    pod 'Alamofire', '~> 4.7'
-  end
-
 end

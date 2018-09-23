@@ -56,31 +56,41 @@
             </objects>
             <point key="canvasLocation" x="-471" y="-83"/>
         </scene>
-        <!--Weather Detail View Controller-->
+        <!--Weather Detail-->
         <scene sceneID="QBQ-1W-tSF">
             <objects>
-                <viewController storyboardIdentifier="WeatherDetailViewController" id="ZCz-J7-0lZ" customClass="WeatherDetailViewController" customModule="SampleWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WeatherDetailViewController" title="Weather Detail" id="ZCz-J7-0lZ" customClass="WeatherDetailViewController" customModule="SampleWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oXA-N1-F3L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jOy-nd-WRR">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="169" width="375" height="498"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <mapView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98y-Ph-jwv">
+                                <rect key="frame" x="0.0" y="20" width="375" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="h03-o7-gzy"/>
+                                </constraints>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jOy-nd-WRR" firstAttribute="bottom" secondItem="DHM-JD-EcS" secondAttribute="bottom" id="6gm-ae-zzb"/>
-                            <constraint firstItem="jOy-nd-WRR" firstAttribute="top" secondItem="DHM-JD-EcS" secondAttribute="top" id="ZE1-x5-BXB"/>
+                            <constraint firstItem="98y-Ph-jwv" firstAttribute="top" secondItem="DHM-JD-EcS" secondAttribute="top" id="9Vu-LN-cUO"/>
+                            <constraint firstItem="jOy-nd-WRR" firstAttribute="top" secondItem="98y-Ph-jwv" secondAttribute="bottom" constant="-1" id="Lc6-n2-dVg"/>
+                            <constraint firstItem="98y-Ph-jwv" firstAttribute="leading" secondItem="DHM-JD-EcS" secondAttribute="leading" id="hNT-en-m7x"/>
                             <constraint firstItem="jOy-nd-WRR" firstAttribute="trailing" secondItem="DHM-JD-EcS" secondAttribute="trailing" id="kHr-9M-6hd"/>
+                            <constraint firstItem="98y-Ph-jwv" firstAttribute="trailing" secondItem="DHM-JD-EcS" secondAttribute="trailing" id="pF6-aV-g8A"/>
                             <constraint firstItem="jOy-nd-WRR" firstAttribute="leading" secondItem="DHM-JD-EcS" secondAttribute="leading" id="xZX-oi-lWm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DHM-JD-EcS"/>
                     </view>
                     <connections>
+                        <outlet property="mapView" destination="98y-Ph-jwv" id="4d4-ps-utz"/>
                         <outlet property="textView" destination="jOy-nd-WRR" id="U8e-pB-g9s"/>
                     </connections>
                 </viewController>

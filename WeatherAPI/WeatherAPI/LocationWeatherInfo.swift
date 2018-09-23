@@ -21,14 +21,17 @@ public struct Temperature {
     public var temperatureMax: Measurement<UnitTemperature>?
 }
 
+//TODO: Try to use Codable instead.
+
 /// Stores location weather information.
-/// The better approach is using Codable though.
 public struct LocationWeatherInfo {
     public var wind: WindInfo?
     public var temperature: Temperature?
     public var pressure: Measurement<UnitPressure>?
     public var humidityPercent: Double?
     public var locationName: String?
+    public var sunrise: Date?
+    public var sunset: Date?
 
     init(json: [String: Any]) {
         if let main = json["main"] as? [String: Any] {
@@ -50,9 +53,31 @@ public struct LocationWeatherInfo {
             if let tempMax = main["temp_max"] as? Double {
                 temperature.temperatureMax = Measurement(value: tempMax, unit: UnitTemperature.kelvin)
             }
+            self.temperature = temperature
         }
+
         if let name = json["name"] as? String {
             self.locationName = name
+        }
+
+        if let windJson = json["wind"] as? [String: Any] {
+            var windInfo = WindInfo()
+            if let speed = windJson["speed"] as? Double {
+                windInfo.speed = Measurement(value: speed, unit: UnitSpeed.metersPerSecond)
+            }
+            if let degree = windJson["deg"] as? Double {
+                windInfo.degree = Measurement(value: degree, unit: UnitAngle.degrees)
+            }
+            self.wind = windInfo
+        }
+
+        if let sys = json["sys"] as? [String: Any] {
+            if let sunsetTimeStamp = sys["sunset"] as? TimeInterval {
+                self.sunset = Date(timeIntervalSince1970: sunsetTimeStamp)
+            }
+            if let sunriseTimeStamp = sys["sunrise"] as? TimeInterval {
+                self.sunrise = Date(timeIntervalSince1970: sunriseTimeStamp)
+            }
         }
     }
 }

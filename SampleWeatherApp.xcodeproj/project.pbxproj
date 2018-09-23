@@ -18,7 +18,6 @@
 		A7B51E6521575F32008AD923 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7B51E6321575F32008AD923 /* LaunchScreen.storyboard */; };
 		A7B51E7021575F32008AD923 /* SampleWeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B51E6F21575F32008AD923 /* SampleWeatherAppTests.swift */; };
 		A7B51E7B21575F32008AD923 /* SampleWeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B51E7A21575F32008AD923 /* SampleWeatherAppUITests.swift */; };
-		A7B51E8921575FE0008AD923 /* RootFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B51E8821575FE0008AD923 /* RootFlowController.swift */; };
 		A7B51EA821578E3D008AD923 /* WeatherAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B51E9321578E3D008AD923 /* WeatherAPI.framework */; };
 		A7B51EA921578E3D008AD923 /* WeatherAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A7B51E9321578E3D008AD923 /* WeatherAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A7B51EC121579369008AD923 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A7B51EBD21579369008AD923 /* Info.plist */; };
@@ -89,7 +88,6 @@
 		A7B51E7621575F32008AD923 /* SampleWeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleWeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7B51E7A21575F32008AD923 /* SampleWeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleWeatherAppUITests.swift; sourceTree = "<group>"; };
 		A7B51E7C21575F32008AD923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A7B51E8821575FE0008AD923 /* RootFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFlowController.swift; sourceTree = "<group>"; };
 		A7B51E9321578E3D008AD923 /* WeatherAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WeatherAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7B51EBB21579369008AD923 /* WeatherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		A7B51EBC21579369008AD923 /* WeatherAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherAPI.h; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 				A7B51E8B21575FFB008AD923 /* Features */,
 				A7B51E8C2157600B008AD923 /* OtherSources */,
 				A7B51E8D2157601D008AD923 /* Resources */,
-				A7B51E8A21575FE6008AD923 /* FlowControllers */,
 			);
 			path = SampleWeatherApp;
 			sourceTree = "<group>";
@@ -208,15 +205,6 @@
 				A7B51E7C21575F32008AD923 /* Info.plist */,
 			);
 			path = SampleWeatherAppUITests;
-			sourceTree = "<group>";
-		};
-		A7B51E8A21575FE6008AD923 /* FlowControllers */ = {
-			isa = PBXGroup;
-			children = (
-				A7B51E8821575FE0008AD923 /* RootFlowController.swift */,
-			);
-			name = FlowControllers;
-			path = RootViewController;
 			sourceTree = "<group>";
 		};
 		A7B51E8B21575FFB008AD923 /* Features */ = {
@@ -375,6 +363,7 @@
 		A7B51E4F21575F31008AD923 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				DefaultBuildSystemTypeForWorkspace = Original;
 				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Sunil Chauhan";
@@ -553,7 +542,6 @@
 				A7B51E5D21575F31008AD923 /* MapViewController.swift in Sources */,
 				A7B51E5B21575F31008AD923 /* AppDelegate.swift in Sources */,
 				A7D83DB02157BCCA009858B4 /* WeatherDetailViewController.swift in Sources */,
-				A7B51E8921575FE0008AD923 /* RootFlowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

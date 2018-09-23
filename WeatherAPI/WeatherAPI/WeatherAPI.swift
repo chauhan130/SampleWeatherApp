@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import CoreLocation
 
+/// Manages the API for weather.
 public class WeatherAPI {
     private enum Constants {
         static let baseUrl = "https://api.openweathermap.org/data/2.5/weather?"
@@ -82,6 +83,7 @@ public class WeatherAPI {
         })
     }
 
+    /// Get string that we can use to send to the API.
     private func getAreaNameFrom(location: CLLocation, completion: @escaping GetAreaNameFromLocationCompletionBlock) {
         CLGeocoder().reverseGeocodeLocation(location, preferredLocale: nil) { (placemarks, error) in
             if let error = error {
