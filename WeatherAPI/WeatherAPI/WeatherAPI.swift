@@ -53,6 +53,7 @@ public class WeatherAPI {
     private typealias LocatioinString = String
 
     public var requestInProgress = false
+    public var searchByAreaName = true
 
     //MARK: - Public methods
 
@@ -60,19 +61,25 @@ public class WeatherAPI {
 
     public func getWeather(location: CLLocation, completion: @escaping GetWeatherInfoCompletionBlock) {
         requestInProgress = true
-        //  Get city/country first if we can. This will help simulate caching the data,
-        //  otherwise user can never select similar coordinates on map. (almost never)
-        getAreaNameFrom(location: location) { (result) in
-            var url = Constants.baseUrl
 
-            switch result {
-            case .success(let locationString):
-                url = url.appending("q=\(locationString)")
-            case .failure(_):
-                url = url.appending("lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)")
+        if searchByAreaName {
+            //  Get city/country first if we can. This will help simulate caching the data,
+            //  otherwise user can never select similar coordinates on map. (almost never)
+            getAreaNameFrom(location: location) { (result) in
+                var url = Constants.baseUrl
+
+                switch result {
+                case .success(let locationString):
+                    url = url.appending("q=\(locationString)")
+                case .failure(_):
+                    url = url.appending("lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)")
+                }
+                url = url.appending("&appid=\(Constants.apiKey)")
+
+                self.actuallyFetchWeatherInformation(url: url, completion: completion)
             }
-            url = url.appending("&appid=\(Constants.apiKey)")
-
+        } else {
+            let url = "\(Constants.baseUrl)lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)"
             self.actuallyFetchWeatherInformation(url: url, completion: completion)
         }
     }
